@@ -1,0 +1,28 @@
+sentinelguard/
+│
+├── config/                  # Конфиги
+│   ├── config.yaml          # Основные настройки
+│   └── logging.conf         # Настройки логов
+│
+├── core/                    # Ядро системы
+│   ├── log_parser.py        # Парсинг логов
+│   ├── host_scanner.py      # Сканирование защиты
+│   ├── risk_engine.py       # Расчёт приоритетов
+│   ├── actions.py           # Защитные меры
+│   └── db.py                # Работа с БД
+│
+├── web/                     # Веб-интерфейс
+│   ├── app.py               # FastAPI-сервер
+│   ├── static/              # JS/CSS (React/Vue)
+│   └── templates/           # HTML-шаблоны
+│
+├── cli/                     # CLI для админа
+│   └── admin.py             # Ручное управление
+│
+├── tests/                   # Тесты
+│   ├── test_log_parser.py
+│   └── test_risk_engine.py
+│
+├── requirements.txt         # Зависимости
+├── sentinelguard.py         # Главный скрипт
+└── Dockerfile               # Для контейнеризации
