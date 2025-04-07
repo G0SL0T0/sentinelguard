@@ -1,23 +1,26 @@
 sentinelguard/
 │
-├── config/                  # Конфиги
+├── config/
 │   ├── config.yaml          # Основные настройки
-│   └── logging.conf         # Настройки логов
+│   └── logging.conf         # Конфиг логов
 │
-├── core/                    # Ядро системы
-│   ├── log_parser.py        # Парсинг логов
-│   ├── host_scanner.py      # Сканирование защиты
-│   ├── risk_engine.py       # Расчёт приоритетов
-│   ├── actions.py           # Защитные меры
-│   └── db.py                # Работа с БД
+├── core/
+│   ├── __init__.py
+│   ├── log_parser.py        # Парсинг Nginx/iptables логов
+│   ├── host_scanner.py      # Сканирование хостов (nmap)
+│   ├── risk_engine.py       # Расчёт рисков
+│   ├── actions.py           # Блокировка, QoS и т.д.
+│   └── db.py                # Работа с SQLite
 │
-├── web/                     # Веб-интерфейс
+├── web/
 │   ├── app.py               # FastAPI-сервер
-│   ├── static/              # JS/CSS (React/Vue)
-│   └── templates/           # HTML-шаблоны
+│   ├── static/              # JS/CSS (React)
+│   │   ├── index.html       # Главная страница
+│   │   └── styles.css       # Стили
+│   └── templates/           # Шаблоны (если используем Jinja2)
 │
-├── cli/                     # CLI для админа
-│   └── admin.py             # Ручное управление
+├── cli/
+│   └── admin.py             # CLI для админа
 │
 ├── tests/                   # Тесты
 │   ├── test_log_parser.py
@@ -25,4 +28,4 @@ sentinelguard/
 │
 ├── requirements.txt         # Зависимости
 ├── sentinelguard.py         # Главный скрипт
-└── Dockerfile               # Для контейнеризации
+└── README.md                # Инструкция
