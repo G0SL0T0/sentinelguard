@@ -1,6 +1,6 @@
 import click
-from core.actions import isolate_host
 from core.host_scanner import scan_host
+from core.actions import isolate_host
 
 @click.group()
 def cli():
@@ -10,13 +10,13 @@ def cli():
 @click.argument("ip")
 def scan(ip):
     scan_host(ip)
-    click.echo(f"Сканирование {ip} завершено")
+    click.echo(f"[+] Хост {ip} просканирован")
 
 @cli.command()
 @click.argument("ip")
-def isolate(ip):
+def block(ip):
     isolate_host(ip)
-    click.echo(f"Хост {ip} изолирован")
+    click.echo(f"[+] Хост {ip} заблокирован")
 
 if __name__ == "__main__":
     cli()

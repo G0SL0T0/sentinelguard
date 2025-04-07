@@ -1,12 +1,22 @@
 import subprocess
-from .db import log_action
+from .db import log_event
 
 def isolate_host(ip):
-    subprocess.run(f"iptables -A INPUT -s {ip} -j DROP", shell=True)
-    log_action(ip, "BLOCK", "Автоматическая изоляция")
+    try:
+        subprocess.run(
+            ["iptables", "-A", "INPUT", "-s", ip, "-j", "DROP"],
+            check=True
+        )
+        log_event(ip, "BLOCK", 100)
+    except subprocess.CalledProcessError as e:
+        log_event(ip, "BLOCK_FAILED", 100)
 
-def limit_speed(ip, speed):
-    subprocess.run(f"tc qdisc add dev eth0 root handle 1: htb", shell=True)
-    subprocess.run(f"tc class add dev eth0 parent 1: classid 1:10 htb rate {speed}", shell=True)
-    subprocess.run(f"tc filter add dev eth0 protocol ip parent 1:0 prio 1 u32 match ip src {ip} flowid 1:10", shell=True)
-    log_action(ip, "QoS", f"Ограничение скорости до {speed}")
+def limit_speed(ip, speed="1mbps"):
+    commands = [
+        f"tc qdisc add dev eth0 root handle 1: htb",
+        f"tc class add dev eth0 parent 1: classid 1:10 htb rate {speed}",
+        f"tc filter add dev eth0 protocol ip parent 1:0 prio 1 u32 match ip src {ip} flowid 1:10"
+    ]
+    for cmd in commands:
+        subprocess.run(cmd, shell=True, check=True)
+    log_event(ip, "QoS_LIMIT", 70)
