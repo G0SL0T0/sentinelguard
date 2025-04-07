@@ -1,19 +1,21 @@
 
-risk_thresholds: # Риски
+risk: # Настройка приоритетов
   high: 80
   medium: 50
   low: 20
 
-
-actions: # Политики действий
-  high_risk:
-    - "isolate_host"
-    - "limit_speed:1mbps"
-  medium_risk:
-    - "alert_admin"
-    - "scan_antivirus"
-
-
-log_paths: # Логи
+ 
+logs: # Пут к логам
   nginx: "/var/log/nginx/access.log"
   firewall: "/var/log/ufw.log"
+
+
+policies: # Политика действий
+  - risk_level: "high"
+    actions:
+      - "isolate_host"
+      - "limit_speed:1mbps"
+  - risk_level: "medium"
+    actions:
+      - "alert_admin"
+      - "scan_ports"
