@@ -13,11 +13,24 @@ sentinelguard/
 │   └── db.py                # Работа с SQLite
 │
 ├── web/
-│   ├── app.py               # FastAPI-сервер
-│   ├── static/              # JS/CSS (React)
-│   │   ├── index.html       # Главная страница
-│   │   └── styles.css       # Стили
-│   └── templates/           # Шаблоны (если используем Jinja2)
+│   │
+│   ├── static/
+│   │   ├── js/
+│   │   │   ├── app.js          # Основная логика
+│   │   │   └── charts.js       # Графики (Chart.js)
+│   │   │
+│   │   ├── css/
+│   │   │   ├── main.css        # Стили
+│   │   │   └── dark-theme.css  # Тёмная тема
+│   │   │
+│   │   └── images/             # Иконки
+│   │
+│   ├── templates/
+│   │   ├── index.html          # Главная страница
+│   │   ├── host.html           # Детали хоста
+│   │   └── settings.html       # Настройки
+│   │
+│   └── app.py                  # FastAPI-сервер
 │
 ├── cli/
 │   └── admin.py             # CLI для админа
@@ -29,3 +42,6 @@ sentinelguard/
 ├── requirements.txt         # Зависимости
 ├── sentinelguard.py         # Главный скрипт
 └── README.md                # Инструкция
+
+
+sentinelguard/web/
