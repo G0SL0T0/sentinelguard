@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SentinelGuard</title>
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/dark-theme.css" id="theme">
+</head>
+<body>
+    <header>
+        <h1>SentinelGuard</h1>
+        <button id="theme-toggle">Тёмная тема</button>
+    </header>
+
+    <main>
+        <section class="dashboard">
+            <div class="risk-chart">
+                <canvas id="riskChart"></canvas>
+            </div>
+            
+            <div class="host-list">
+                <h2>Хосты</h2>
+                <table id="hostsTable">
+                    <thead>
+                        <tr>
+                            <th>IP</th>
+                            <th>Риск</th>
+                            <th>Статус</th>
+                            <th>Действия</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script src="/static/js/charts.js"></script>
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
