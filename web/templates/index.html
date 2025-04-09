@@ -1,30 +1,67 @@
 {% extends "base.html" %}
 
-{% block title %}Главная{% endblock %}
-
 {% block content %}
-<section class="dashboard">
-    <div class="stats">
-        <div class="stat-card">
-            <h3>Высокий риск</h3>
-            <p class="critical">12 хостов</p>
-        </div>
-        <div class="stat-card">
-            <h3>Средний риск</h3>
-            <p class="warning">24 хоста</p>
-        </div>
-        <div class="stat-card">
-            <h3>Низкий риск</h3>
-            <p class="safe">58 хостов</p>
-        </div>
+<div class="main-container">
+    <!-- Фильтры -->
+    <div class="filters">
+        <input type="text" placeholder="Поиск по IP..." class="search-input">
+        
+        <select class="risk-filter">
+            <option value="all">Все риски</option>
+            <option value="high">Высокий (>80)</option>
+            <option value="medium">Средний (50-80)</option>
+        </select>
+        
+        <button class="btn-refresh">⟳ Обновить</button>
     </div>
 
-    <div class="chart-container">
-        <canvas id="riskChart"></canvas>
-    </div>
-</section>
-{% endblock %}
+    <!-- Таблицы -->
+    <div class="dashboard-grid">
+        <!-- Логи -->
+        <div class="card">
+            <h2><i class="icon-alert"></i> Последние угрозы</h2>
+            <table class="log-table">
+                <thead>
+                    <tr>
+                        <th>Время</th>
+                        <th>IP</th>
+                        <th>Тип</th>
+                        <th>Риск</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2023-11-15 14:30</td>
+                        <td>192.168.1.45</td>
+                        <td><span class="tag sql">SQLi</span></td>
+                        <td><div class="risk-level high">92%</div></td>
+                    </tr>
+                    <!-- Дополнить! -->
+                </tbody>
+            </table>
+        </div>
 
-{% block scripts %}
-<script src="/static/js/charts.js"></script>
+        <!-- Действия системы -->
+        <div class="card">
+            <h2><i class="icon-activity"></i> Автоматические действия</h2>
+            <table class="action-table">
+                <thead>
+                    <tr>
+                        <th>Время</th>
+                        <th>Действие</th>
+                        <th>Цель</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2023-11-15 14:31</td>
+                        <td>Блокировка трафика</td>
+                        <td>192.168.1.45</td>
+                    </tr>
+                    <!-- Дополнить! -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 {% endblock %}
