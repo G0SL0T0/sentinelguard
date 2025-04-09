@@ -1,36 +1,21 @@
-document.addEventListener('DOMContentLoaded', () => {
-    
-    fetch('/api/hosts')  // Хосты
-        .then(response => response.json())
-        .then(hosts => renderHosts(hosts));
-
-    document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+// Смена тем
+document.getElementById('theme-toggle').addEventListener('click', () => {
+    const theme = document.getElementById('theme');
+    theme.href = theme.href.includes('dark') 
+        ? '/static/css/main.css' 
+        : '/static/css/dark-theme.css';
 });
 
-function renderHosts(hosts) {
-    const table = document.querySelector('#hostsTable tbody');
-    table.innerHTML = hosts.map(host => `
-        <tr>
-            <td><a href="/host/${host.ip}">${host.ip}</a></td>
-            <td><span class="risk-badge" style="background: ${getRiskColor(host.risk)}">${host.risk}%</span></td>
-            <td>${host.status}</td>
-            <td><button onclick="isolateHost('${host.ip}')">Изолировать</button></td>
-        </tr>
-    `).join('');
-}
-
-function isolateHost(ip) {
-    fetch(`/api/host/${ip}/isolate`, { method: 'POST' })
-        .then(() => alert(`Хост ${ip} изолирован!`));
-}
-
-function getRiskColor(risk) {
-    if (risk >= 80) return '#f44336';
-    if (risk >= 50) return '#ff9800';
-    return '#4CAF50';
-}
-
-function toggleTheme() {
-    const theme = document.getElementById('theme');
-    theme.href = theme.href.includes('dark') ? '/static/css/main.css' : '/static/css/dark-theme.css';
-}
+// Обрабатываемые действия
+document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('action-btn')) {
+        const ip = e.target.dataset.ip;
+        if (confirm(`Заблокировать хост ${ip}?`)) {
+            fetch(`/api/host/${ip}/isolate`, { method: 'POST' })
+                .then(() => {
+                    e.target.textContent = 'Заблокирован';
+                    e.target.disabled = true;
+                });
+        }
+    }
+});

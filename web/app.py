@@ -21,7 +21,6 @@ def generate_logs():
         } for i in range(1, 100)
     ]
 
-
 @app.get("/api/logs") # API для фронта
 async def get_logs():
     return generate_logs()

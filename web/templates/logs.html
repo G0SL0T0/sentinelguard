@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Логи угроз{% endblock %}
+
+{% block content %}
+<section class="log-viewer">
+    <div class="controls">
+        <input type="text" id="search" placeholder="Поиск по IP или угрозе...">
+        <select id="risk-filter">
+            <option value="all">Все риски</option>
+            <option value="high">Высокий (>80)</option>
+            <option value="medium">Средний (50-80)</option>
+            <option value="low">Низкий (<50)</option>
+        </select>
+    </div>
+
+    <table id="logs-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>IP</th>
+                <th>Время</th>
+                <th>Угроза</th>
+                <th>Риск</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <div class="pagination">
+        <button id="prev-page">← Назад</button>
+        <span id="page-info">Страница 1</span>
+        <button id="next-page">Вперёд →</button>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    fetch('/api/logs')
+        .then(response => response.json())
+        .then(logs => {
+            const table = document.querySelector('#logs-table tbody');
+            table.innerHTML = logs.map(log => `
+                <tr>
+                    <td>${log.id}</td>
+                    <td>${log.ip}</td>
+                    <td>${log.timestamp}</td>
+                    <td><span class="threat-tag ${log.threat.replace(' ', '-').toLowerCase()}">${log.threat}</span></td>
+                    <td><div class="risk-bar" style="--risk: ${log.risk}%"></div></td>
+                    <td><button class="action-btn" data-ip="${log.ip}">Блокировать</button></td>
+                </tr>
+            `).join('');
+        });
+});
+</script>
+{% endblock %}
