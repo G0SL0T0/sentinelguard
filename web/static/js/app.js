@@ -40,3 +40,8 @@ document.querySelectorAll('.log-table th').forEach(header => {
         });
     }
 });
+
+window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    header.classList.toggle('scrolled', window.scrollY > 20);
+});

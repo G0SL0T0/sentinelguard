@@ -223,3 +223,19 @@ header {
 
 .risk-level.high { background: #ffebee; color: #d32f2f; }
 .risk-level.medium { background: #fff8e1; color: #ffa000; }
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 80px;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+header.scrolled {
+    height: 60px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+
