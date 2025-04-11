@@ -1,3 +1,5 @@
+import { showSkeleton } from './animations.js';
+
 // Фильтр таблицы
 document.querySelector('.risk-filter').addEventListener('change', (e) => {
     const riskLevel = e.target.value;
@@ -44,4 +46,13 @@ document.querySelectorAll('.log-table th').forEach(header => {
 window.addEventListener('scroll', () => {
     const header = document.querySelector('header');
     header.classList.toggle('scrolled', window.scrollY > 20);
+});
+
+showSkeleton();
+
+// Анимация кнопок
+document.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', () => {
+        gsap.to(btn, { scale: 0.95, duration: 0.2, yoyo: true, repeat: 1 });
+    });
 });

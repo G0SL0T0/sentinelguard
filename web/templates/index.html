@@ -64,4 +64,26 @@
         </div>
     </div>
 </div>
-{% endblock %}
+<div class="dashboard">
+    <!-- Skeleton при загрузке -->
+    <div class="skeleton-card">
+        <div class="skeleton-line"></div>
+        <div class="skeleton-line"></div>
+    </div>
+
+    <!-- Реальные данные -->
+    <div class="card hidden" id="real-data">
+        <h2>Последние угрозы</h2>
+        <table class="log-table">...</table>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => {
+            document.querySelector('.skeleton-card').classList.add('hidden');
+            document.getElementById('real-data').classList.remove('hidden');
+            gsap.from("#real-data", { opacity: 0, y: 20, duration: 0.5 });
+        }, 2000);
+    });
+</script>
