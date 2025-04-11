@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>SentinelGuard - Тестовый стенд</title>
+    <!-- Подключение css -->
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/dark-theme.css">
+    <link rel="stylesheet" href="/static/css/animations.css">
+    <style>
+        /* Стили для тестовой страницы */
+        .test-section {
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px dashed #4CAF50;
+            border-radius: 8px;
+        }
+        .component-title {
+            color: #4CAF50;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка -->
+    <header>
+        <div class="logo">
+            <img src="/static/images/shield-icon.png" alt="Logo">
+            <h1>SentinelGuard <small>Тестовый стенд</small></h1>
+        </div>
+        <button id="theme-toggle">🌓</button>
+    </header>
+
+    <!-- Тестовые секции -->
+    <div class="main-container">
+        <!-- 1. Тест шапки -->
+        <div class="test-section">
+            <h2 class="component-title">1. Шапка сайта</h2>
+            <p>Прокрутите страницу вниз, чтобы увидеть анимацию уменьшения шапки.</p>
+        </div>
+
+        <!-- 2. Тест карточек -->
+        <div class="test-section">
+            <h2 class="component-title">2. Карточки с анимацией</h2>
+            <div class="dashboard-grid">
+                <div class="card" id="test-card">
+                    <h3>Тестовая карточка</h3>
+                    <p>При наведении должна "подпрыгивать".</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Тест skeleton-загрузки -->
+        <div class="test-section">
+            <h2 class="component-title">3. Skeleton-загрузка</h2>
+            <button id="btn-load">Загрузить данные</button>
+            <div class="skeleton-card" id="skeleton-demo">
+                <div class="skeleton-line"></div>
+                <div class="skeleton-line"></div>
+            </div>
+            <div class="card hidden" id="loaded-data">
+                <h3>Данные загружены!</h3>
+            </div>
+        </div>
+
+        <!-- 4. Тест таблицы -->
+        <div class="test-section">
+            <h2 class="component-title">4. Таблица логов</h2>
+            <table class="log-table">
+                <thead>
+                    <tr>
+                        <th>Время</th>
+                        <th>IP</th>
+                        <th>Тип угрозы</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2023-11-16 10:30</td>
+                        <td>192.168.1.1</td>
+                        <td><span class="tag sql">SQLi</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Подключаем js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="/static/js/app.js"></script>
+    <script src="/static/js/animations.js"></script>
+    <script>
+        // Локальные тестовые скрипты
+        document.getElementById('btn-load').addEventListener('click', () => {
+            const skeleton = document.getElementById('skeleton-demo');
+            const data = document.getElementById('loaded-data');
+            
+            skeleton.classList.remove('hidden');
+            data.classList.add('hidden');
+            
+            setTimeout(() => {
+                skeleton.classList.add('hidden');
+                data.classList.remove('hidden');
+                gsap.from(data, { opacity: 0, y: 20 });
+            }, 1500);
+        });
+
+        // Анимация карточки
+        document.getElementById('test-card').addEventListener('mouseenter', () => {
+            gsap.to("#test-card", { y: -5, duration: 0.3 });
+        });
+    </script>
+</body>
+</html>
