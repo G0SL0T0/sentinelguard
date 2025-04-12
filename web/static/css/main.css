@@ -239,3 +239,13 @@ header.scrolled {
 }
 
 
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  
+  body.dark {
+    background: var(--dark-bg);
+    color: white;
+  }

@@ -56,3 +56,25 @@ document.querySelectorAll('button').forEach(btn => {
         gsap.to(btn, { scale: 0.95, duration: 0.2, yoyo: true, repeat: 1 });
     });
 });
+
+// Анимации (GSAP)
+document.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      gsap.to(btn, { scale: 0.95, duration: 0.2, yoyo: true, repeat: 1 });
+    });
+  });
+
+// Инициализация графиков
+function initCharts() {
+const ctx = document.getElementById('riskChart').getContext('2d');
+new Chart(ctx, {
+    type: 'line',
+    data: { /* ... */ },
+    options: { animations: { /* ... */ } }
+});
+}
+
+// Skeleton-загрузка
+function showSkeleton() {
+gsap.from(".skeleton", { opacity: 0.3, duration: 1, repeat: -1, yoyo: true });
+}
