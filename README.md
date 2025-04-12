@@ -146,7 +146,9 @@ python cli/admin.py scan 192.168.1.1
 
 ## 📬 Контакты
 Автор: Gosloto
+
 Email: Gosioto@yandex.ru  
+
 Telegram: @G0SL0T0
 ```
 
