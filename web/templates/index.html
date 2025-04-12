@@ -1,67 +1,141 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SentinelGuard - Мониторинг угроз</title>
+    <!-- Подключение css -->
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/dark-theme.css" id="theme-style">
+    <link rel="stylesheet" href="/static/css/animations.css">
+    <!-- Иконка -->
+    <link rel="icon" href="/static/images/shield-icon.png">
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header>
+        <div class="logo">
+            <img src="/static/images/shield-icon.png" alt="SentinelGuard Logo">
+            <h1>SentinelGuard</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/" class="active">Главная</a></li>
+                <li><a href="/logs">Логи</a></li>
+                <li><a href="/actions">Действия</a></li>
+                <li><a href="/test-animations">Тест анимаций</a></li>
+            </ul>
+        </nav>
+        <div class="header-controls">
+            <button id="theme-toggle">🌓</button>
+            <span class="user-badge">ADMIN</span>
+        </div>
+    </header>
 
-{% block content %}
-<div class="main-container">
-    <!-- Фильтры -->
-    <div class="filters">
-        <input type="text" placeholder="Поиск по IP..." class="search-input">
-        
-        <select class="risk-filter">
-            <option value="all">Все риски</option>
-            <option value="high">Высокий (>80)</option>
-            <option value="medium">Средний (50-80)</option>
-        </select>
-        
-        <button class="btn-refresh">⟳ Обновить</button>
-    </div>
-
-    <!-- Таблицы -->
-    <div class="dashboard-grid">
-        <!-- Логи -->
-        <div class="card">
-            <h2><i class="icon-alert"></i> Последние угрозы</h2>
-            <table class="log-table">
-                <thead>
-                    <tr>
-                        <th>Время</th>
-                        <th>IP</th>
-                        <th>Тип</th>
-                        <th>Риск</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>2023-11-15 14:30</td>
-                        <td>192.168.1.45</td>
-                        <td><span class="tag sql">SQLi</span></td>
-                        <td><div class="risk-level high">92%</div></td>
-                    </tr>
-                    <!-- Дополнить! -->
-                </tbody>
-            </table>
+    <!-- Основной контент -->
+    <main class="main-container">
+        <!-- Фильтры -->
+        <div class="filters">
+            <input type="text" placeholder="Поиск по IP..." class="search-input">
+            <select class="risk-filter">
+                <option value="all">Все риски</option>
+                <option value="high">Высокий (>80)</option>
+                <option value="medium">Средний (50-80)</option>
+            </select>
+            <button class="btn-refresh">⟳ Обновить</button>
         </div>
 
-        <!-- Действия системы -->
-        <div class="card">
-            <h2><i class="icon-activity"></i> Автоматические действия</h2>
-            <table class="action-table">
-                <thead>
-                    <tr>
-                        <th>Время</th>
-                        <th>Действие</th>
-                        <th>Цель</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>2023-11-15 14:31</td>
-                        <td>Блокировка трафика</td>
-                        <td>192.168.1.45</td>
-                    </tr>
-                    <!-- Дополнить! -->
-                </tbody>
-            </table>
+        <!-- Таблицы данных -->
+        <div class="dashboard-grid">
+            <!-- Таблица логов -->
+            <div class="card">
+                <h2><i class="icon-alert"></i> Последние угрозы</h2>
+                <table class="log-table">
+                    <thead>
+                        <tr>
+                            <th>Время</th>
+                            <th>IP</th>
+                            <th>Тип</th>
+                            <th>Риск</th>
+                            <th>Действия</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2023-11-16 14:30</td>
+                            <td>192.168.1.45</td>
+                            <td><span class="tag sql">SQLi</span></td>
+                            <td><div class="risk-level high">92%</div></td>
+                            <td><button class="btn-block">Блокировать</button></td>
+                        </tr>
+                        <tr>
+                            <td>2023-11-16 14:35</td>
+                            <td>192.168.1.72</td>
+                            <td><span class="tag xss">XSS</span></td>
+                            <td><div class="risk-level medium">65%</div></td>
+                            <td><button class="btn-block">Блокировать</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Таблица действий -->
+            <div class="card">
+                <h2><i class="icon-activity"></i> Автоматические действия</h2>
+                <table class="action-table">
+                    <thead>
+                        <tr>
+                            <th>Время</th>
+                            <th>Действие</th>
+                            <th>Цель</th>
+                            <th>Статус</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2023-11-16 14:31</td>
+                            <td>Блокировка трафика</td>
+                            <td>192.168.1.45</td>
+                            <td><span class="status success">Выполнено</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
-</div>
-{% endblock %}
+    </main>
+
+    <!-- Подключение скриптов -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="/static/js/app.js"></script>
+    <script src="/static/js/animations.js"></script>
+    <script>
+        // Локальные скрипты для страницы
+        document.addEventListener('DOMContentLoaded', () => {
+            // Анимация загрузки
+            setTimeout(() => {
+                gsap.to(".card", { 
+                    opacity: 1, 
+                    y: 0, 
+                    duration: 0.5,
+                    stagger: 0.1 
+                });
+            }, 1000);
+
+            // Кнопоки блокировки
+            document.querySelectorAll('.btn-block').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const ip = btn.closest('tr').querySelector('td:nth-child(2)').textContent;
+                    if (confirm(`Заблокировать хост ${ip}?`)) {
+                        gsap.to(btn, {
+                            backgroundColor: '#e74c3c',
+                            duration: 0.3
+                        });
+                        btn.textContent = 'Заблокирован';
+                        btn.disabled = true;
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
