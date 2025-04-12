@@ -95,13 +95,6 @@ sentinelguard/
 pytest tests/
 ```
 
-Пример теста:
-```python
-def test_block_ip():
-    from core.actions import isolate_host
-    isolate_host("192.168.1.1")  # Проверка блокировки
-```
-
 ---
 
 ## Docker-развёртывание 🐳
