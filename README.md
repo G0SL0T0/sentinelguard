@@ -27,7 +27,7 @@
 
 1. **Клонирование репозитория**:
    ```bash
-   git clone https://github.com/ваш-репозиторий/sentinelguard.git
+   git clone https://github.com/G0SL0T0/sentinelguard.git
    cd sentinelguard
    ```
 
