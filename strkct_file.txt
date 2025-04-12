@@ -16,19 +16,25 @@ sentinelguard/
 │   │
 │   ├── static/
 │   │   ├── js/
+│   │   │   ├── animations.js
 │   │   │   ├── app.js          # Основная логика
 │   │   │   └── charts.js       # Графики (Chart.js)
 │   │   │
 │   │   ├── css/
+│   │   │   ├──animations.css
 │   │   │   ├── main.css        # Стили
 │   │   │   └── dark-theme.css  # Тёмная тема
 │   │   │
 │   │   └── images/             # Иконки
 │   │
 │   ├── templates/
-│   │   ├── index.html          # Главная страница
+│   │   ├── actions.html
+│   │   ├── base.html
 │   │   ├── host.html           # Детали хоста
-│   │   └── settings.html       # Настройки
+│   │   ├── index.html          # Главная страница
+│   │   ├── logs.html
+│   │   ├── settings.html       # Настройки
+│   │   └── Testing_web.html
 │   │
 │   └── app.py                  # FastAPI-сервер
 │
@@ -39,9 +45,8 @@ sentinelguard/
 │   ├── test_log_parser.py
 │   └── test_risk_engine.py
 │
+├── Dockerfile
 ├── requirements.txt         # Зависимости
 ├── sentinelguard.py         # Главный скрипт
 └── README.md                # Инструкция
 
-
-sentinelguard/web/
