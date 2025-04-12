@@ -137,7 +137,7 @@ python cli/admin.py scan 192.168.1.1
 3. Запушьте изменения (`git push origin feature/ваша-фича`)
 4. Откройте Pull Request
 
-**Рекомендуемые улучшения**:
+**Возможные ветки улучшения**:
 - Поддержка SIEM-систем (Splunk, ELK)
 - Интеграция с Telegram-ботами
 - Machine Learning для детектирования аномалий
