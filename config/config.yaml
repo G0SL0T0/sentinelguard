@@ -9,13 +9,15 @@ logs: # Пут к логам
   nginx: "/var/log/nginx/access.log"
   firewall: "/var/log/ufw.log"
 
+scanning:
+  ports: "21,22,80,443,3389"
 
-policies: # Политика действий
+policies:
   - risk_level: "high"
     actions:
-      - "isolate_host"
-      - "limit_speed:1mbps"
+      - "isolate_host"       # Полная изоляция
+      - "limit_speed:1mbps"  # Ограничение скорости
   - risk_level: "medium"
     actions:
-      - "alert_admin"
-      - "scan_ports"
+      - "alert_admin"        # Уведомление администратору
+      - "scan_ports"         # Дополнительное сканирование

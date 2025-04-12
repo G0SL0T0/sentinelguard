@@ -13,6 +13,11 @@ def get_db():
         conn.commit()
         conn.close()
 
+def get_host(ip):
+    with get_db() as cursor:
+        cursor.execute("SELECT * FROM hosts WHERE ip = ?", (ip,))
+        return cursor.fetchone()
+
 def init_db():
     with get_db() as cursor:
         cursor.execute("""

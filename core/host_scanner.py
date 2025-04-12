@@ -16,7 +16,11 @@ def scan_host(ip):
     if '80/tcp' in scanner[ip]['tcp']:
         if 'http' in scanner[ip]['tcp'][80]['version'].lower():
             security_score -= 20  # HTTP вместо HTTPS
-            
-    # Добавление штрафов и нюансов для проверки сети
+    
+    if '443/tcp' in scanner[ip]['tcp']:
+        if 'TLSv1.2' not in scanner[ip]['tcp'][443]['version']:
+            security_score -= 25
+
+# Добавление штрафов и нюансов для проверки сети
     
     update_host_security(ip, security_score)
