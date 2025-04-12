@@ -129,6 +129,8 @@ python cli/admin.py scan 192.168.1.1
     - Уровень защиты: 70/100
 ```
 
+---
+
 ## Контрибьютинг
 1. Форкните репозиторий
 2. Создайте ветку (`git checkout -b feature/ваша-фича`)
@@ -148,4 +150,4 @@ Email: Gosioto@yandex.ru
 Telegram: @G0SL0T0
 ```
 
----
+
