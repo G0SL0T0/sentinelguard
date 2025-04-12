@@ -16,25 +16,17 @@ sentinelguard/
 │   │
 │   ├── static/
 │   │   ├── js/
-│   │   │   ├── animations.js
-│   │   │   ├── app.js          # Основная логика
-│   │   │   └── charts.js       # Графики (Chart.js)
+│   │   │   └── app.js          # Основная логика
 │   │   │
 │   │   ├── css/
-│   │   │   ├──animations.css
-│   │   │   ├── main.css        # Стили
-│   │   │   └── dark-theme.css  # Тёмная тема
+│   │   │   └── main.css        # Стили
 │   │   │
 │   │   └── images/             # Иконки
 │   │
 │   ├── templates/
-│   │   ├── actions.html
 │   │   ├── base.html
-│   │   ├── host.html           # Детали хоста
 │   │   ├── index.html          # Главная страница
-│   │   ├── logs.html
-│   │   ├── settings.html       # Настройки
-│   │   └── Testing_web.html
+│   │   └── settings.html       # Настройки
 │   │
 │   └── app.py                  # FastAPI-сервер
 │
